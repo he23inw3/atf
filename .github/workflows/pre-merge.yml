@@ -8,30 +8,19 @@ on:
       - '*'
 
 jobs:
-  # SEE: https://docs.snyk.io/integrations/ci-cd-integrations/github-actions-integration
+  # SEE: https://docs.snyk.io/integrations/ci-cd-integrations/github-actions-integration/snyk-gradle-jdk17-action
   security-check:
     name: Run Security Check
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Set up JDK 17
-        uses: actions/setup-java@v1
-        with:
-          java-version: 17
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-      - name: Run security-check
-        uses: snyk/actions/node@master
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/gradle-jdk17@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --severity-threshold=critical
+          args: --severity-threshold=high
   tests:
     name: Run tests
     runs-on: ubuntu-latest
