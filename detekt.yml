@@ -9,6 +9,12 @@ build:
 
 style:
   MagicNumber:
+    active: true
+  UnnecessaryAbstractClass:
+    active: false
+  UtilityClassWithPublicConstructor:
+    active: false
+  UnusedPrivateMember:
     active: false
 
 console-reports:
