@@ -66,6 +66,8 @@ class UserControllerTest {
 			every { userService.fetch("0001") } returns user
 			every { requestProperty.apiKey } returns apiKey
 			every { LocalDate.now() } returns now
+			every { configUtil.getLogMessage("BE8880", apiKey) } returns "request : $apiKey"
+			every { configUtil.getLogMessage("BE8881", apiKey) } returns "properties : $apiKey"
 
 			// do
 			val actual = testSuite.usersGetProfileGet(apiKey, "0001")
@@ -82,6 +84,8 @@ class UserControllerTest {
 			// setup
 			every { requestProperty.apiKey } returns apiKey
 			every { LocalDate.now() } returns now
+			every { configUtil.getLogMessage("BE8880", "dummy") } returns "request : dummy"
+			every { configUtil.getLogMessage("BE8881", apiKey) } returns "properties : $apiKey"
 
 			// verify
 			assertThrows<InvalidApiKeyException> {
@@ -103,6 +107,8 @@ class UserControllerTest {
 			every { userService.create(user, ApiConstant.BE_API002) } returns Unit
 			every { requestProperty.apiKey } returns apiKey
 			every { LocalDate.now() } returns now
+			every { configUtil.getLogMessage("BE8880", apiKey) } returns "request : $apiKey"
+			every { configUtil.getLogMessage("BE8881", apiKey) } returns "properties : $apiKey"
 
 			// do
 			val request = StoreUserRequest("0001", "test_user", "test@jp", "2000/10/20")
@@ -118,6 +124,8 @@ class UserControllerTest {
 			// setup
 			every { requestProperty.apiKey } returns apiKey
 			every { LocalDate.now() } returns now
+			every { configUtil.getLogMessage("BE8880", "dummy") } returns "request : dummy"
+			every { configUtil.getLogMessage("BE8881", apiKey) } returns "properties : $apiKey"
 
 			// verify
 			assertThrows<InvalidApiKeyException> {
@@ -140,6 +148,8 @@ class UserControllerTest {
 			every { userService.update(user, ApiConstant.BE_API003) } returns Unit
 			every { requestProperty.apiKey } returns apiKey
 			every { LocalDate.now() } returns now
+			every { configUtil.getLogMessage("BE8880", apiKey) } returns "request : $apiKey"
+			every { configUtil.getLogMessage("BE8881", apiKey) } returns "properties : $apiKey"
 
 			// do
 			val request = UpdateUserRequest("test_user", "test@jp", "2000/10/20")
@@ -155,6 +165,8 @@ class UserControllerTest {
 			// setup
 			every { requestProperty.apiKey } returns apiKey
 			every { LocalDate.now() } returns now
+			every { configUtil.getLogMessage("BE8880", "dummy") } returns "request : dummy"
+			every { configUtil.getLogMessage("BE8881", apiKey) } returns "properties : $apiKey"
 
 			// verify
 			assertThrows<InvalidApiKeyException> {
@@ -176,6 +188,8 @@ class UserControllerTest {
 			every { userService.delete("0001") } returns Unit
 			every { requestProperty.apiKey } returns apiKey
 			every { LocalDate.now() } returns now
+			every { configUtil.getLogMessage("BE8880", apiKey) } returns "request : $apiKey"
+			every { configUtil.getLogMessage("BE8881", apiKey) } returns "properties : $apiKey"
 
 			// do
 			testSuite.usersDeleteProfileDelete(apiKey, "0001")
@@ -190,6 +204,8 @@ class UserControllerTest {
 			// setup
 			every { requestProperty.apiKey } returns apiKey
 			every { LocalDate.now() } returns now
+			every { configUtil.getLogMessage("BE8880", "dummy") } returns "request : dummy"
+			every { configUtil.getLogMessage("BE8881", apiKey) } returns "properties : $apiKey"
 
 			// verify
 			assertThrows<InvalidApiKeyException> {
