@@ -1,7 +1,6 @@
 package com.example.atf.config.holder
 
 import com.example.atf.constant.ApiConstant
-import com.example.atf.exception.ApiException
 import org.slf4j.MDC
 import java.util.UUID
 
@@ -11,6 +10,7 @@ object TraceIdHolder {
 		MDC.put(ApiConstant.X_TRACE_ID, UUID.randomUUID().toString())
 	}
 
+	@Suppress("SwallowedException")
 	fun get(): String {
 		return try {
 			MDC.get(ApiConstant.X_TRACE_ID)

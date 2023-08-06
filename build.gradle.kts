@@ -3,13 +3,13 @@ import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 import java.lang.Thread.sleep
 
 plugins {
-	id("org.springframework.boot") version "3.0.2"
+	id("org.springframework.boot") version "3.0.5"
 	id("io.spring.dependency-management") version "1.1.0"
 	kotlin("jvm") version "1.7.22"
 	kotlin("plugin.spring") version "1.7.22"
 	id("org.openapi.generator") version "6.4.0"
   id("com.avast.gradle.docker-compose") version "0.14.0"
-  id("io.gitlab.arturbosch.detekt") version "1.17.0"
+  id("io.gitlab.arturbosch.detekt") version "1.20.0"
   jacoco
 }
 
@@ -37,7 +37,7 @@ dependencies {
 }
 
 detekt {
-    toolVersion = "1.17.0"
+    toolVersion = "1.20.0"
     config = files("./detekt.yml")
     buildUponDefaultConfig = true
 }

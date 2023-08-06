@@ -20,9 +20,10 @@ abstract class ControllerBase(
 
 	fun checkApiKey(apiKey: String?) {
 		if (logger.isDebugEnabled) {
-			logger.debug("request : {}", apiKey)
-			logger.debug("properties : {}", requestProperty.apiKey)
+			logger.debug(configUtil.getLogMessage("BE8880", apiKey))
+			logger.debug(configUtil.getLogMessage("BE8881", requestProperty.apiKey))
 		}
+
 		if (requestProperty.apiKey != apiKey) {
 			throw InvalidApiKeyException("APIキーに誤りがあります。")
 		}
